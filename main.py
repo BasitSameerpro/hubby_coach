@@ -1,18 +1,27 @@
-from llm import llm
+# main.py
+from llm import llm as SingleShotLLM
 from llm_agent import LanggraphllmChat
 
+def main():
+    print("Welcome to Hubby Coach!")
+    print("Choose your interaction mode:")
+    print("1. Single Shot (Ask a question, get one response)")
+    print("2. Interactive Chat (Continuous conversation)")
+
+    while True:
+        choice = input("Enter your choice (1 or 2): ").strip()
+        if choice == '1':
+            print("\n--- Single Shot Mode ---")
+            single_shot_bot = SingleShotLLM()
+            single_shot_bot.run()
+            break
+        elif choice == '2':
+            print("\n--- Interactive Chat Mode ---")
+            chat_system = LanggraphllmChat()
+            chat_system.run()
+            break
+        else:
+            print("Invalid choice. Please enter '1' or '2'.")
+
 if __name__ == "__main__":
-    print('='* 60)
-    print("Please choose the interaction mode with hubbycoach.\n"
-          "There are 2 options\n"
-          "Single shot llm and interactive chat session. Choose 1 for single shot and 2 for the interactive mode"
-          )
-    print('='*60)
-    user_choise = int(input("User: "))
-    if user_choise == 1:
-        llm = llm()
-        llm.run()
-    else:
-        Chat_llm = LanggraphllmChat()
-        Chat_llm.run()
-    
+    main()
